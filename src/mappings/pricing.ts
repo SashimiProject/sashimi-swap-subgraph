@@ -4,11 +4,11 @@ import { BigDecimal, Address, BigInt } from '@graphprotocol/graph-ts/index'
 import { ZERO_BD, factoryContract, ADDRESS_ZERO, ONE_BD } from './helpers'
 
 // todo: 修改eth address
-const WETH_ADDRESS = '0xA050886815CFc52a24B9C4aD044ca199990B6690'
-// todo: 修改稳定币address
+const WETH_ADDRESS = '0xa050886815cfc52a24b9c4ad044ca199990b6690'
+// todo: 修改稳定币address，注意使用lower case，不要大写
 const USDC_WETH_PAIR = '0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc' // created 10008355
-const DAI_WETH_PAIR = '0x94AcC8D46788CAD939da7E47F10A9d90C3db5DE8' // created block 10042267
-const USDT_WETH_PAIR = '0x61BAB6ACE479859b8131208463FccCcB926105bF' // created block 10093341
+const DAI_WETH_PAIR = '0x94acc8d46788cad939da7e47f10a9d90c3db5de8' // created block 10042267
+const USDT_WETH_PAIR = '0x61bab6ace479859b8131208463fccccb926105bf' // created block 10093341
 
 // dummy for testing
 export function getEthPriceInUSD(): BigDecimal {
@@ -16,7 +16,6 @@ export function getEthPriceInUSD(): BigDecimal {
   let daiPair = Pair.load(DAI_WETH_PAIR) // dai is token0
   let usdcPair = Pair.load(USDC_WETH_PAIR) // usdc is token0
   let usdtPair = Pair.load(USDT_WETH_PAIR) // usdt is token0
-
   // all 3 have been created
   if (daiPair !== null && usdcPair !== null && usdtPair !== null) {
     let totalLiquidityETH = daiPair.reserve1.plus(usdcPair.reserve1).plus(usdtPair.reserve1)
