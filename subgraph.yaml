@@ -10,7 +10,7 @@ dataSources:
     network: kovan
     source:
       # todo: sashimi swap factory
-      address: '0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f'
+      address: '0x391e911FB596FE246995d4aCBAF2377D5757327e'
       abi: Factory
       # todo: start block
       startBlock: 21016516
