@@ -7,13 +7,13 @@ dataSources:
   - kind: ethereum/contract
     name: Factory
     # todo: chain network
-    network: kovan
+    network: main
     source:
       # todo: sashimi swap factory
-      address: '0x391e911FB596FE246995d4aCBAF2377D5757327e'
+      address: '0x42Af4E7b20a1aD97D8CFd7585CAd5b50c34D294e'
       abi: Factory
       # todo: start block
-      startBlock: 21016516
+      startBlock: 10924374
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.3
@@ -38,7 +38,7 @@ templates:
   - kind: ethereum/contract
     name: Pair
     # todo: chain network
-    network: kovan
+    network: main
     source:
       abi: Pair
     mapping:

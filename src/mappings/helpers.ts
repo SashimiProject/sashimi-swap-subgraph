@@ -8,7 +8,7 @@ import { Factory as FactoryContract } from '../types/templates/Pair/Factory'
 
 export const ADDRESS_ZERO = '0x0000000000000000000000000000000000000000'
 // todo: sashimi swap factory address
-export const FACTORY_ADDRESS = '0x391e911FB596FE246995d4aCBAF2377D5757327e'
+export const FACTORY_ADDRESS = '0x42af4e7b20a1ad97d8cfd7585cad5b50c34d294e'
 
 export let ZERO_BI = BigInt.fromI32(0)
 export let ONE_BI = BigInt.fromI32(1)
