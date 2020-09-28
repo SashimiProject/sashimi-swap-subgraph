@@ -8,7 +8,7 @@ const WETH_ADDRESS = '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2'
 // todo: stable coin pair address, use lower-case hex string
 const USDC_WETH_PAIR = '0x64a9d29305b9847ceee21558d3ce1f8e85ee4496' // created 10944827
 const DAI_WETH_PAIR = '0x51214310ac356b26df2a9caf3895398e533c4fa9' // created block 10944886
-const USDT_WETH_PAIR = '0x490ccb3c835597ff31e525262235487f9426312b' // created block 10093341
+const USDT_WETH_PAIR = '0x490ccb3c835597ff31e525262235487f9426312b' // created block 10944784
 
 // dummy for testing
 export function getEthPriceInUSD(): BigDecimal {

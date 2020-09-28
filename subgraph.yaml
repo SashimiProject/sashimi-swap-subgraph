@@ -7,7 +7,7 @@ dataSources:
   - kind: ethereum/contract
     name: Factory
     # todo: chain network
-    network: main
+    network: mainnet
     source:
       # todo: sashimi swap factory
       address: '0xf028f723ed1d0fe01cc59973c49298aa95c57472'
@@ -38,7 +38,7 @@ templates:
   - kind: ethereum/contract
     name: Pair
     # todo: chain network
-    network: main
+    network: mainnet
     source:
       abi: Pair
     mapping:
