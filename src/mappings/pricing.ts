@@ -44,9 +44,6 @@ export function getEthPriceInUSD(): BigDecimal {
 // token where amounts should contribute to tracked volume and liquidity
 // todo: consider it
 let WHITELIST: string[] = [
-  '0xc28e27870558cf22add83540d2126da2e4b464c2', // SASHIMI
-  '0xbf2179859fc6d5bee9bf9158632dc51678a4100e', // ELF
-  '0x6f259637dcd74c767781e37bc6133cd6a68aa161', // HT
   '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2', // WETH
   '0x6b175474e89094c44da98b954eedeac495271d0f', // DAI
   '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48', // USDC
@@ -56,6 +53,9 @@ let WHITELIST: string[] = [
   '0x39aa39c021dfbae8fac545936693ac917d5e7563', // cUSDC
   '0x86fadb80d8d2cff3c3680819e4da99c10232ba0f', // EBASE
   '0x57ab1ec28d129707052df4df418d58a2d46d5f51', // sUSD
+  '0xc28e27870558cf22add83540d2126da2e4b464c2', // SASHIMI
+  '0xbf2179859fc6d5bee9bf9158632dc51678a4100e', // ELF
+  '0x6f259637dcd74c767781e37bc6133cd6a68aa161', // HT
   '0x9f8f72aa9304c8b593d555f12ef6589cc3a579a2', // MKR
   '0xc00e94cb662c3520282e6f5717214004a7f26888', // COMP
   '0x514910771af9ca656af840dff83e8264ecf986ca', //LINK
