@@ -44,6 +44,9 @@ export function getEthPriceInUSD(): BigDecimal {
 // token where amounts should contribute to tracked volume and liquidity
 // todo: consider it
 let WHITELIST: string[] = [
+  '0xc28e27870558cf22add83540d2126da2e4b464c2', // SASHIMI
+  '0xbf2179859fc6d5bee9bf9158632dc51678a4100e', // ELF
+  '0x6f259637dcd74c767781e37bc6133cd6a68aa161', // HT
   '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2', // WETH
   '0x6b175474e89094c44da98b954eedeac495271d0f', // DAI
   '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48', // USDC
@@ -95,6 +98,7 @@ export function findEthPerToken(token: Token): BigDecimal {
 }
 
 /**
+ * TODO: handle this to track all tokens
  * Accepts tokens and amounts, return tracked amount based on token whitelist
  * If one token on whitelist, return amount in that token converted to USD.
  * If both are, return average of two amounts
@@ -155,6 +159,7 @@ export function getTrackedVolumeUSD(
 }
 
 /**
+ * TODO: handle this to track all tokens
  * Accepts tokens and amounts, return tracked amount based on token whitelist
  * If one token on whitelist, return amount in that token converted to USD * 2.
  * If both are, return sum of two amounts
