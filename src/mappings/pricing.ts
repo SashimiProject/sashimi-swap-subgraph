@@ -56,6 +56,7 @@ let WHITELIST: string[] = [
   '0xc28e27870558cf22add83540d2126da2e4b464c2', // SASHIMI
   '0xbf2179859fc6d5bee9bf9158632dc51678a4100e', // ELF
   '0x6f259637dcd74c767781e37bc6133cd6a68aa161', // HT
+  '0x1f9840a85d5af5bf1d1762f925bdaddc4201f984', // UNI
   '0x9f8f72aa9304c8b593d555f12ef6589cc3a579a2', // MKR
   '0xc00e94cb662c3520282e6f5717214004a7f26888', // COMP
   '0x514910771af9ca656af840dff83e8264ecf986ca', //LINK
@@ -66,7 +67,7 @@ let WHITELIST: string[] = [
 ]
 
 // minimum liquidity required to count towards tracked volume for pairs with small # of Lps
-let MINIMUM_USD_THRESHOLD_NEW_PAIRS = BigDecimal.fromString('400000')
+let MINIMUM_USD_THRESHOLD_NEW_PAIRS = BigDecimal.fromString('1')
 
 // minimum liquidity for price to get tracked
 let MINIMUM_LIQUIDITY_THRESHOLD_ETH = BigDecimal.fromString('2')
