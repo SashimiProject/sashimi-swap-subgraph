@@ -7,8 +7,8 @@ import { ZERO_BD, factoryContract, ADDRESS_ZERO, ONE_BD } from './helpers'
 const WETH_ADDRESS = '0xa050886815cfc52a24b9c4ad044ca199990b6690'
 // todo: 修改稳定币address，注意使用lower case，不要大写
 const USDC_WETH_PAIR = '0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc' // created 10008355
-const DAI_WETH_PAIR = '0x94acc8d46788cad939da7e47f10a9d90c3db5de8' // created block 10042267
-const USDT_WETH_PAIR = '0x61bab6ace479859b8131208463fccccb926105bf' // created block 10093341
+const DAI_WETH_PAIR = '0x7139c30e9bcf64d0d3302b51c471f17b18c74dc7' // created block 10042267
+const USDT_WETH_PAIR = '0x8925b213a7deab1aadbce126c693dd96c4a2f3e6' // created block 10093341
 
 // dummy for testing
 export function getEthPriceInUSD(): BigDecimal {
@@ -43,15 +43,16 @@ export function getEthPriceInUSD(): BigDecimal {
 // token where amounts should contribute to tracked volume and liquidity
 // todo: consider it
 let WHITELIST: string[] = [
-  '0xA050886815CFc52a24B9C4aD044ca199990B6690', // WETH
+  '0xa050886815cfc52a24b9c4ad044ca199990b6690', // WETH
   '0x4bedb4cff3b8ea0474f534838e767c11d6b311f2', // DAI
   '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48', // USDC
-  '0x59E8461b541Ef2C40383525Ff51eD646A51Ad455', // USDT
+  '0xc2e10cdf6c51f74d6a10317e477dab6a51464094', // USDT
   '0x0000000000085d4780b73119b644ae5ecd22b376', // TUSD
   '0x5d3a536e4d6dbd6114cc1ead35777bab948e3643', // cDAI
   '0x39aa39c021dfbae8fac545936693ac917d5e7563', // cUSDC
   '0x86fadb80d8d2cff3c3680819e4da99c10232ba0f', // EBASE
   '0x57ab1ec28d129707052df4df418d58a2d46d5f51', // sUSD
+  '0x4986843fde2b0dae6bdc54c8e16567614ea8786f', // SASHIMI
   '0x9f8f72aa9304c8b593d555f12ef6589cc3a579a2', // MKR
   '0xc00e94cb662c3520282e6f5717214004a7f26888', // COMP
   '0x514910771af9ca656af840dff83e8264ecf986ca', //LINK
@@ -59,10 +60,10 @@ let WHITELIST: string[] = [
   '0xc011a73ee8576fb46f5e1c5751ca3b9fe0af2a6f', //SNX
   '0x0bc529c00c6401aef6d220be8c6ea1667f6ad93e', //YFI
   '0xdf5e0e81dff6faf3a7e52ba697820c5e32d806a8' // yCurv
-]
+];
 
 // minimum liquidity required to count towards tracked volume for pairs with small # of Lps
-let MINIMUM_USD_THRESHOLD_NEW_PAIRS = BigDecimal.fromString('400000')
+let MINIMUM_USD_THRESHOLD_NEW_PAIRS = BigDecimal.fromString('1')
 
 // minimum liquidity for price to get tracked
 let MINIMUM_LIQUIDITY_THRESHOLD_ETH = BigDecimal.fromString('2')

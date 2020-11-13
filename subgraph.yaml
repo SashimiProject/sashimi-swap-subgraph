@@ -10,10 +10,10 @@ dataSources:
     network: kovan
     source:
       # todo: sashimi swap factory
-      address: '0x391e911FB596FE246995d4aCBAF2377D5757327e'
+      address: '0xc8dde00dc855c7126181e25f093822dd5676fee1'
       abi: Factory
       # todo: start block
-      startBlock: 21016516
+      startBlock: 21097650
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.3
