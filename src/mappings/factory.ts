@@ -10,8 +10,9 @@ import {
   fetchTokenSymbol,
   fetchTokenName,
   fetchTokenDecimals,
-  fetchTokenTotalSupply
+  fetchTokenTotalSupply, convertTokenToDecimal
 } from './helpers'
+import { Address } from '@graphprotocol/graph-ts/index'
 
 export function handleNewPair(event: PairCreated): void {
   // load factory (create if first exchange)
@@ -44,15 +45,15 @@ export function handleNewPair(event: PairCreated): void {
     token0 = new Token(event.params.token0.toHexString())
     token0.symbol = fetchTokenSymbol(event.params.token0)
     token0.name = fetchTokenName(event.params.token0)
-    token0.totalSupply = fetchTokenTotalSupply(event.params.token0)
     let decimals = fetchTokenDecimals(event.params.token0)
     // bail if we couldn't figure out the decimals
     if (decimals === null) {
       log.debug('mybug the decimal on token 0 was null', [])
       return
     }
-
+    token0.totalSupply = convertTokenToDecimal(fetchTokenTotalSupply(event.params.token0), decimals);
     token0.decimals = decimals
+    token0.profit = ZERO_BD;
     token0.derivedETH = ZERO_BD
     token0.tradeVolume = ZERO_BD
     token0.tradeVolumeUSD = ZERO_BD
@@ -68,13 +69,14 @@ export function handleNewPair(event: PairCreated): void {
     token1 = new Token(event.params.token1.toHexString())
     token1.symbol = fetchTokenSymbol(event.params.token1)
     token1.name = fetchTokenName(event.params.token1)
-    token1.totalSupply = fetchTokenTotalSupply(event.params.token1)
     let decimals = fetchTokenDecimals(event.params.token1)
 
     // bail if we couldn't figure out the decimals
     if (decimals === null) {
       return
     }
+    token1.totalSupply = convertTokenToDecimal(fetchTokenTotalSupply(event.params.token1), decimals);
+    token1.profit = ZERO_BD;
     token1.decimals = decimals
     token1.derivedETH = ZERO_BD
     token1.tradeVolume = ZERO_BD

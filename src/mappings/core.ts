@@ -1,6 +1,7 @@
 import { PairHourData } from './../types/schema'
 /* eslint-disable prefer-const */
 import { BigInt, BigDecimal, store, Address } from '@graphprotocol/graph-ts'
+import { ERC20 } from '../types/Factory/ERC20'
 import {
   Pair,
   Token,
@@ -26,7 +27,10 @@ import {
   createLiquidityPosition,
   ZERO_BD,
   BI_18,
-  createLiquiditySnapshot
+  createLiquiditySnapshot,
+  fetchTokenTotalSupply,
+  SASHIMI_ADDRESS,
+  BURN_ADDRESS
 } from './helpers'
 
 function isCompleteMint(mintId: string): boolean {
@@ -197,6 +201,30 @@ export function handleTransfer(event: Transfer): void {
   transaction.save()
 }
 
+
+
+function updateSashimiProfit(t: Token | null): void {
+  if (t !== null && Address.fromString(t.id).equals(Address.fromString(SASHIMI_ADDRESS))) {
+    let contract = ERC20.bind(Address.fromString(t.id));
+    let burned = BigDecimal.fromString('0');
+    let resp = contract.try_balanceOf(Address.fromString(BURN_ADDRESS));
+    if (!resp.reverted) {
+      burned = convertTokenToDecimal(resp.value, t.decimals);
+    }
+    let bundle = Bundle.load('1');
+    let totalSupply = convertTokenToDecimal(fetchTokenTotalSupply(Address.fromString(t.id)), BI_18).minus(burned);
+    let diff = totalSupply.minus(t.totalSupply);
+    let profit = diff.times(t.derivedETH as BigDecimal).times(bundle.ethPrice);
+    if (t.profit.equals(BigDecimal.fromString('0'))) {
+      t.profit = totalSupply.times(t.derivedETH as BigDecimal).times(bundle.ethPrice);
+    } else {
+      t.profit = t.profit.plus(profit);
+    }
+    t.totalSupply = totalSupply;
+    t.save();
+  }
+}
+
 export function handleSync(event: Sync): void {
   let pair = Pair.load(event.address.toHex())
   let token0 = Token.load(pair.token0)
@@ -233,6 +261,8 @@ export function handleSync(event: Sync): void {
   token1.derivedETH = findEthPerToken(token1 as Token)
   token0.save()
   token1.save()
+  updateSashimiProfit(token0);
+  updateSashimiProfit(token1);
 
   // get tracked liquidity - will be 0 if neither is in whitelist
   let trackedLiquidityETH: BigDecimal

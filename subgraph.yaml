@@ -52,6 +52,8 @@ templates:
       abis:
         - name: Pair
           file: ./abis/pair.json
+        - name: ERC20
+          file: ./abis/ERC20.json
         - name: Factory
           file: ./abis/factory.json
       eventHandlers:

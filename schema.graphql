@@ -33,7 +33,7 @@ type Token @entity {
   decimals: BigInt!
 
   # used for other stats like marketcap
-  totalSupply: BigInt!
+  totalSupply: BigDecimal!
 
   # token specific volume
   tradeVolume: BigDecimal!
@@ -48,6 +48,8 @@ type Token @entity {
 
   # derived prices
   derivedETH: BigDecimal
+  # sashimi profit, in usd
+  profit: BigDecimal!
 
   # saved for historical refernce of most liquid pairs
   mostLiquidPairs: [PairDayData]!

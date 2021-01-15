@@ -9,6 +9,8 @@ import { Factory as FactoryContract } from '../types/templates/Pair/Factory'
 export const ADDRESS_ZERO = '0x0000000000000000000000000000000000000000'
 // todo: sashimi swap factory address
 export const FACTORY_ADDRESS = '0xf028f723ed1d0fe01cc59973c49298aa95c57472'
+export let SASHIMI_ADDRESS = '0xc28e27870558cf22add83540d2126da2e4b464c2';
+export let BURN_ADDRESS = '0x000000000000000000000000000000000000dead';
 
 export let ZERO_BI = BigInt.fromI32(0)
 export let ONE_BI = BigInt.fromI32(1)
@@ -110,12 +112,12 @@ export function fetchTokenName(tokenAddress: Address): string {
 
 export function fetchTokenTotalSupply(tokenAddress: Address): BigInt {
   let contract = ERC20.bind(tokenAddress)
-  let totalSupplyValue = null
+  let totalSupplyValue = BigInt.fromI32(0);
   let totalSupplyResult = contract.try_totalSupply()
   if (!totalSupplyResult.reverted) {
-    totalSupplyValue = totalSupplyResult as i32
+    totalSupplyValue = totalSupplyResult.value;
   }
-  return BigInt.fromI32(totalSupplyValue as i32)
+  return totalSupplyValue;
 }
 
 export function fetchTokenDecimals(tokenAddress: Address): BigInt {
