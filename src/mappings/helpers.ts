@@ -8,8 +8,8 @@ import { Factory as FactoryContract } from '../types/templates/Pair/Factory'
 
 export const ADDRESS_ZERO = '0x0000000000000000000000000000000000000000'
 // todo: sashimi swap factory address
-export const FACTORY_ADDRESS = '0xf028f723ed1d0fe01cc59973c49298aa95c57472'
-export let SASHIMI_ADDRESS = '0xc28e27870558cf22add83540d2126da2e4b464c2';
+export const FACTORY_ADDRESS = '0xc28e27870558cf22add83540d2126da2e4b464c2'
+export let SASHIMI_ADDRESS = '0xc2037c1c13dd589e0c14c699dd2498227d2172cc';
 export let BURN_ADDRESS = '0x000000000000000000000000000000000000dead';
 
 export let ZERO_BI = BigInt.fromI32(0)
@@ -33,7 +33,7 @@ export function bigDecimalExp18(): BigDecimal {
 }
 
 export function convertEthToDecimal(eth: BigInt): BigDecimal {
-  return eth.toBigDecimal().div(exponentToBigDecimal(18))
+  return eth.toBigDecimal().div(exponentToBigDecimal(BigInt.fromI32(18)))
 }
 
 export function convertTokenToDecimal(tokenAmount: BigInt, exchangeDecimals: BigInt): BigDecimal {
