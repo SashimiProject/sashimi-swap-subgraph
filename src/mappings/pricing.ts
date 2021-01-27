@@ -1,6 +1,6 @@
 /* eslint-disable prefer-const */
 import { Pair, Token, Bundle } from '../types/schema'
-import { BigDecimal, Address, BigInt } from '@graphprotocol/graph-ts/index'
+import { BigDecimal, Address, BigInt, EthereumEvent } from '@graphprotocol/graph-ts/index'
 import { ZERO_BD, factoryContract, ADDRESS_ZERO, ONE_BD } from './helpers'
 
 // todo: weth address
@@ -9,11 +9,14 @@ const WHT_ADDRESS = '0x5545153ccfca01fbd7dd11c0b23ba694d9509a6f'
 const HUSD_WHT_PAIR = '0x24c9e69780e9d7205d40085fce5188c37d54b4f7' // created unknown
 
 // dummy for testing
-export function getEthPriceInUSD(): BigDecimal {
+export function getEthPriceInUSD(event: EthereumEvent): BigDecimal {
   // fetch eth prices for each stablecoin
   let husdPair = Pair.load(HUSD_WHT_PAIR) // husd is token0
 
   if (husdPair !== null) {
+    if (event.block.number.lt(BigInt.fromI32(1615753))) {
+      return BigDecimal.fromString('5.7');
+    }
     return husdPair.token0Price
   } else {
     return ZERO_BD
