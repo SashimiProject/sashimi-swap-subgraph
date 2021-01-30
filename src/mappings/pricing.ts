@@ -6,9 +6,9 @@ import { ZERO_BD, factoryContract, ADDRESS_ZERO, ONE_BD } from './helpers'
 // todo: weth address
 const WETH_ADDRESS = '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2'
 // todo: stable coin pair address, use lower-case hex string
-const USDC_WETH_PAIR = '0x64a9d29305b9847ceee21558d3ce1f8e85ee4496' // created 10944827
-const DAI_WETH_PAIR = '0x51214310ac356b26df2a9caf3895398e533c4fa9' // created block 10944886
-const USDT_WETH_PAIR = '0x490ccb3c835597ff31e525262235487f9426312b' // created block 10944784
+const USDC_WETH_PAIR = '0xb4e16d0168e52d35cacd2c6185b44281ec28c9dc' // created 10008355
+const DAI_WETH_PAIR = '0xa478c2975ab1ea89e8196811f51a7b7ade33eb11' // created block 10042267
+const USDT_WETH_PAIR = '0x0d4a11d5eeaac28ec3f61d100daf4d40471f1852' // created block 10093341
 
 // dummy for testing
 export function getEthPriceInUSD(): BigDecimal {

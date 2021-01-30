@@ -30,7 +30,7 @@ import {
   createLiquiditySnapshot,
   fetchTokenTotalSupply,
   SASHIMI_ADDRESS,
-  BURN_ADDRESS
+  BURN_ADDRESS, SUSHI_ADDRESS
 } from './helpers'
 
 function isCompleteMint(mintId: string): boolean {
@@ -203,8 +203,11 @@ export function handleTransfer(event: Transfer): void {
 
 
 
-function updateSashimiProfit(t: Token | null): void {
-  if (t !== null && Address.fromString(t.id).equals(Address.fromString(SASHIMI_ADDRESS))) {
+function updateSashimiOrSushiProfit(t: Token | null): void {
+  if (t !== null && (
+    Address.fromString(t.id).equals(Address.fromString(SASHIMI_ADDRESS)) ||
+      Address.fromString(t.id).equals(Address.fromString(SUSHI_ADDRESS))
+  )) {
     let contract = ERC20.bind(Address.fromString(t.id));
     let burned = BigDecimal.fromString('0');
     let resp = contract.try_balanceOf(Address.fromString(BURN_ADDRESS));
@@ -261,8 +264,8 @@ export function handleSync(event: Sync): void {
   token1.derivedETH = findEthPerToken(token1 as Token)
   token0.save()
   token1.save()
-  updateSashimiProfit(token0);
-  updateSashimiProfit(token1);
+  updateSashimiOrSushiProfit(token0);
+  updateSashimiOrSushiProfit(token1);
 
   // get tracked liquidity - will be 0 if neither is in whitelist
   let trackedLiquidityETH: BigDecimal
