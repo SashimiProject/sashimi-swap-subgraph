@@ -7,9 +7,11 @@ import { ZERO_BD, factoryContract, ADDRESS_ZERO, ONE_BD } from './helpers'
 const WHT_ADDRESS = '0x5545153ccfca01fbd7dd11c0b23ba694d9509a6f'
 // todo: stable coin pair address, use lower-case hex string
 const HUSD_WHT_PAIR = '0x24c9e69780e9d7205d40085fce5188c37d54b4f7' // created unknown
+let HUSD_SASHIMI_PAIR = '0xc55eb93e887d283d3616ec47e4c783ad57b5dab0';
+let HT_SASHIMI_PAIR = '0xdcd6a829a705d2f022432c1a2b6532101fa37b27';
 
 // dummy for testing
-export function getEthPriceInUSD(event: EthereumEvent): BigDecimal {
+export function getEthPriceInUSDOld(event: EthereumEvent): BigDecimal {
   // fetch eth prices for each stablecoin
   let husdPair = Pair.load(HUSD_WHT_PAIR) // husd is token0
 
@@ -18,6 +20,18 @@ export function getEthPriceInUSD(event: EthereumEvent): BigDecimal {
       return BigDecimal.fromString('5.7');
     }
     return husdPair.token0Price
+  } else {
+    return ZERO_BD
+  }
+}
+
+export function getEthPriceInUSD(event: EthereumEvent): BigDecimal {
+  // fetch eth prices for each stablecoin
+  let husdSashimiPair = Pair.load(HUSD_SASHIMI_PAIR) // husd is token0
+  let htSashimiPair = Pair.load(HT_SASHIMI_PAIR) // ht is token0
+
+  if (husdSashimiPair !== null && htSashimiPair !== null) {
+    return husdSashimiPair.token0Price.times(htSashimiPair.token1Price)
   } else {
     return ZERO_BD
   }
