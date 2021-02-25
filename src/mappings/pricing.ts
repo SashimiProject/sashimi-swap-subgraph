@@ -25,7 +25,7 @@ export function getEthPriceInUSDOld(event: EthereumEvent): BigDecimal {
   }
 }
 
-export function getEthPriceInUSD(event: EthereumEvent): BigDecimal {
+export function getEthPriceInUSD(): BigDecimal {
   // fetch eth prices for each stablecoin
   let husdSashimiPair = Pair.load(HUSD_SASHIMI_PAIR) // husd is token0
   let htSashimiPair = Pair.load(HT_SASHIMI_PAIR) // ht is token0
