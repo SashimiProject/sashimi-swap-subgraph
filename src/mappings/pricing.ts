@@ -25,6 +25,9 @@ export function getEthPriceInUSDOld(event: EthereumEvent): BigDecimal {
   }
 }
 
+/**
+ * @desc 获取原生Token的价格，在不同的链上，要使用对应的交易对，想办法计算出原生币的美元价格
+ */
 export function getEthPriceInUSD(): BigDecimal {
   // fetch eth prices for each stablecoin
   let husdSashimiPair = Pair.load(HUSD_SASHIMI_PAIR) // husd is token0
@@ -38,7 +41,9 @@ export function getEthPriceInUSD(): BigDecimal {
 }
 
 // token where amounts should contribute to tracked volume and liquidity
-// todo: consider it
+/**
+ * @desc 白名单内的token，才可以被当做价格计算的标准，需要在不同的平台上，上线不同的白名单
+ */
 let WHITELIST: string[] = [
   '0x5545153ccfca01fbd7dd11c0b23ba694d9509a6f', // WHT
   '0x0298c2b32eae4da002a15f36fdf7615bea3da047', // HUSD
