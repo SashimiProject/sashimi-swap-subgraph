@@ -11,6 +11,9 @@ const DAI_WETH_PAIR = '0x51214310ac356b26df2a9caf3895398e533c4fa9' // created bl
 const USDT_WETH_PAIR = '0x490ccb3c835597ff31e525262235487f9426312b' // created block 10944784
 
 // dummy for testing
+/**
+ * @desc 获取原生Token的价格，在不同的链上，要使用对应的交易对，想办法计算出原生币的美元价格
+ */
 export function getEthPriceInUSD(): BigDecimal {
   // fetch eth prices for each stablecoin
   let daiPair = Pair.load(DAI_WETH_PAIR) // dai is token0
@@ -42,7 +45,9 @@ export function getEthPriceInUSD(): BigDecimal {
 }
 
 // token where amounts should contribute to tracked volume and liquidity
-// todo: consider it
+/**
+ * @desc 白名单内的token，才可以被当做价格计算的标准，需要在不同的平台上，上线不同的白名单
+ */
 let WHITELIST: string[] = [
   '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2', // WETH
   '0x6b175474e89094c44da98b954eedeac495271d0f', // DAI
