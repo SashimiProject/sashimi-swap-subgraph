@@ -254,7 +254,7 @@ export function handleSync(event: Sync): void {
 
   // update ETH price now that reserves could have changed
   let bundle = Bundle.load('1')
-  bundle.ethPrice = getEthPriceInUSD(event)
+  bundle.ethPrice = getEthPriceInUSD()
   bundle.save()
 
   token0.derivedETH = findEthPerToken(token0 as Token)
