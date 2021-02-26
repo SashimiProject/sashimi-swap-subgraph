@@ -1,23 +1,20 @@
 /* eslint-disable prefer-const */
 import { Pair, Token, Bundle } from '../types/schema'
-import { BigDecimal, Address, BigInt, EthereumEvent } from '@graphprotocol/graph-ts/index'
+import { BigDecimal, Address, BigInt } from '@graphprotocol/graph-ts/index'
 import { ZERO_BD, factoryContract, ADDRESS_ZERO, ONE_BD } from './helpers'
 
 // todo: weth address
-const WHT_ADDRESS = '0x5545153ccfca01fbd7dd11c0b23ba694d9509a6f'
+const WHT_ADDRESS = '0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c'
 // todo: stable coin pair address, use lower-case hex string
-const HUSD_WHT_PAIR = '0x24c9e69780e9d7205d40085fce5188c37d54b4f7' // created unknown
+const USD_WBNB_PAIR = '0x0c3675e1dde92f708e1c67f5c7a86451b4b0531b' // usd is token0
 
-// dummy for testing
-export function getEthPriceInUSD(event: EthereumEvent): BigDecimal {
+// TODO: 获取原生币价格的核心逻辑
+export function getEthPriceInUSD(): BigDecimal {
   // fetch eth prices for each stablecoin
-  let husdPair = Pair.load(HUSD_WHT_PAIR) // husd is token0
+  let usdPair = Pair.load(USD_WBNB_PAIR) // usd is token0
 
-  if (husdPair !== null) {
-    if (event.block.number.lt(BigInt.fromI32(1615753))) {
-      return BigDecimal.fromString('5.7');
-    }
-    return husdPair.token0Price
+  if (usdPair !== null) {
+    return usdPair.token0Price
   } else {
     return ZERO_BD
   }
@@ -26,11 +23,16 @@ export function getEthPriceInUSD(event: EthereumEvent): BigDecimal {
 // token where amounts should contribute to tracked volume and liquidity
 // todo: consider it
 let WHITELIST: string[] = [
-  '0x5545153ccfca01fbd7dd11c0b23ba694d9509a6f', // WHT
-  '0x0298c2b32eae4da002a15f36fdf7615bea3da047', // HUSD
-  '0xc2037c1c13dd589e0c14c699dd2498227d2172cc', // SASHIMI
-  '0x64ff637fb478863b7468bc97d30a5bf3a428a1fd', // ETH
-  '0x03271182cf2b47929978d0e4ca4af0846f66e2de' // KBBR
+  '0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c', // WBNB
+  '0x55d398326f99059ff775485246999027b3197955', // USDT
+  '0xc28e27870558cf22add83540d2126da2e4b464c2', // SASHIMI
+  '0x2170ed0880ac9a755fd29b2688956bd959f933f8', // ETH
+  '0xa3f020a5c92e15be13caf0ee5c95cf79585eecc9', // ELF
+  '0x7083609fce4d1d8dc0c979aab8c869ea2c873402', // DOT
+  '0xe9e7cea3dedca5984780bafc599bd69add087d56', // BUSD
+  '0x8ac76a51cc950d9822d68b83fe1ad97b32cd580d', // USDC
+  '0x7130d2a12b9bcbfae4f2634d864a1ee1ce3ead9c', // BTCB
+  '0x1af3f329e8be154074d8769d1ffa4ee058b1dbc3', // DAI
 ]
 
 // minimum liquidity required to count towards tracked volume for pairs with small # of Lps

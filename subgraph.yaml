@@ -10,10 +10,10 @@ dataSources:
     network: mainnet
     source:
       # todo: sashimi swap factory
-      address: '0xc28e27870558cf22add83540d2126da2e4b464c2'
+      address: '0x1daed74ed1dd7c9dabbe51361ac90a69d851234d'
       abi: Factory
       # todo: start block
-      startBlock: 784578
+      startBlock: 5208518
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.3
